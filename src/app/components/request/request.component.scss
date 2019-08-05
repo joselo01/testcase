@@ -1,0 +1,60 @@
+.alert {
+    border-radius: 0;
+    margin-top: 20px;
+}
+
+.alert-info {
+    background: #787e4d;
+    color: white;
+    border: none;
+    letter-spacing: 0.1em;
+    width: 100%;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background: none;
+    border: none;
+    color: #000;
+    position: relative;
+    border-radius: 0;
+    padding: .5rem 3rem
+}
+
+.nav-pills .nav-link.active::after {
+    content: "";
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    border-bottom: 2px solid #000;
+}
+
+.nav-item a {
+    color: #000;
+}
+
+.pending,
+.approved,
+.denied {
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    width: 100px;
+    display: block;
+    height: 40px;
+    line-height: 20px;
+}
+
+.pending {
+    background: #000;
+}
+
+.approved {
+    background: #787e4d;
+}
+
+.denied {
+    background: red;
+}

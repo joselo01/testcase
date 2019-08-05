@@ -1,0 +1,87 @@
+<div class="main-content container">
+    <h1>Manage data</h1>
+    <div class="row">
+        <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">user_id</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">item_id</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">user_email</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">item_views</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">item_favorites</a>
+            </div>
+            <button type="button" class="add-key">Add key</button>
+        </div>
+
+        <div class="col-9 marco tab-pane fade show active" id="v-pills-home" aria-labelledby="v-pills-home-tab" role="tabpanel">
+            <form (ngSubmit)="OnGuardarUser(formNew)" #formNew="ngForm">
+                <div class="row">
+                    <div class="col-9">
+                        <div>
+                            <div>
+                                <div class="user">
+                                    <h2 class="user_id">Key Name</h2>
+                                    <input [(ngModel)]="user.id" #user_id="ngModel" name="user_id" type="text" required>
+                                </div>
+                                <div class="description">
+                                    <h5>Desciption</h5>
+                                    <input [(ngModel)]="user.description" #description="ngModel" type="text" name="description" id="description" style="width: 100%" required />
+
+                                </div>
+                                <div class="type">
+                                    <h5>Type</h5>
+                                    <select [(ngModel)]="user.type" #type="ngModel" name="seelct" name="type" id="type" required>
+                                                <option value="integer">integer</option>
+                                                <option value="null">null</option>
+                                                <option value="string">string</option>
+                                            </select>
+                                    <p class="checkbox"><input type="checkbox" /> <span>is this personal data?</span></p>
+                                </div>
+                                <div class="sensivity">
+                                    <h5>Sensitivity</h5>
+                                    <input [(ngModel)]="user.sensitivity" #sensitivity="ngModel" type="text" name="sensitivity" id="sensitivity" style="width: 100%" required />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div>
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <button type="submit" class="save-this">Save</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="alert alert-info" role="alert">
+                            POSSIBLE VALUES
+                        </div>
+                    </div>
+                    <div class="col-6 spacing">
+                        VALUE
+                        <span>null</span>
+                        <span>integer</span>
+
+                    </div>
+                    <div class="col-6 spacing">
+                        DESCRIPTION
+                        <span>Value when user is not fond</span>
+                        <span>ID key of user</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input type="text" name="value2" id="value2" style="width: 100%;" />
+                    </div>
+                    <div class="col-6">
+                        <input id="description_2" style="width: 100%;" />
+                    </div>
+
+                </div>
+                <button type="button" class="add-key" style="width: 30% ">Add possible value</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>

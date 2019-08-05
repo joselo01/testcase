@@ -1,0 +1,53 @@
+<div class="main-content container">
+    <h1>Requests</h1>
+    <div class="row">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" onclick="return false">ALL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="return false">PENDING</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="return false">APPROVED</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="return false">DENIED</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="alert alert-info" role="alert" style="margin-top: 20px;">
+            PENDING REQUESTS
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th scope="col">DATE</th>
+                    <th scope="col">REASON</th>
+                    <th scope="col" style="text-align: right; padding-right: 35px;">STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of requests$ | async">
+
+                    <td>{{item.date | date: 'yyyy/MM/dd'}}</td>
+                    <td>{{item.reason}}</td>
+                    <td>
+                        <div [ngSwitch]="item.status" style="float: right;">
+                            <span *ngSwitchCase="'Pending'" class="pending">{{item.status}}</span>
+                            <span *ngSwitchCase="'Approved'" class="approved">{{item.status}}</span>
+                            <span *ngSwitchCase="'Denied'" class="denied">{{item.status}}</span>
+                        </div>
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

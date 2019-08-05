@@ -1,0 +1,154 @@
+<div class="main-content container">
+    <h1>Manage data</h1>
+    <div class="row">
+        <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">user_id</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">item_id</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">user_email</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">item_views</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">item_favorites</a>
+            </div>
+            <button type="button" class="add-key">Add key</button>
+        </div>
+
+        <div class="col-9 marco tab-pane fade show active" id="v-pills-home" aria-labelledby="v-pills-home-tab" role="tabpanel">
+            <div class="row" *ngFor="let usuario of user">
+                <div class="col-9" *ngIf="editState == false">
+                    <div>
+                        <div>
+                            <div class="user">
+                                <h2 class="namekey">{{usuario.namekey}}</h2>
+                            </div>
+                            <div class="descripcion">
+                                <h5>Desciption</h5>
+                                <p>{{usuario.description}}</p>
+                            </div>
+                            <div class="type">
+                                <h5>Type</h5>
+                                <p>{{usuario.type}}</p>
+                            </div>
+                            <div class="sensivity">
+                                <h5>Sensitivity</h5>
+                                <p>{{usuario.sensitivity}}</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-3" *ngIf="editState == false">
+                    <div>
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <button *ngIf="editState == false" (click)="editUser($event, usuario)" type="button" class="edit-this">Edit this</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12" *ngIf="editState == false">
+                    <div class="alert alert-info" role="alert">
+                        POSSIBLE VALUES
+                    </div>
+                </div>
+                <div class="col-12" *ngIf="editState == false">
+                    <div class="row spacing">
+                        <div class="col-6"><strong>VALUE</strong></div>
+                        <div class="col-6"><strong>DESCRIPTION</strong></div>
+                    </div>
+                </div>
+                <div class="col-12" *ngIf="editState == false">
+                    <div class="row spacing" *ngFor="let poss of possible">
+                        <div class="col-6">{{poss.value}}</div>
+                        <div class="col-6">{{poss.description}}</div>
+                    </div>
+                </div>
+                <div *ngIf="editState && userToEdit.id == usuario.id">
+                    <form (ngSubmit)="OnUpdateUser(usuario)">
+                        <div class="row" style="margin: 0;">
+                            <div class="col-9">
+                                <div>
+                                    <div>
+                                        <div class="user">
+                                            <h2 class="field">Key name</h2>
+                                            <input [(ngModel)]="usuario.namekey" #nmaekey="ngModel" type="text" name="namekey" id="namekey" style="width: 50%" />
+                                        </div>
+                                        <div class="description">
+                                            <h5>Desciption</h5>
+                                            <input [(ngModel)]="usuario.description" #description="ngModel" type="text" name="description" id="description" style="width: 100%" required />
+
+                                        </div>
+                                        <div class="type">
+                                            <h5>Type</h5>
+                                            <select [(ngModel)]="usuario.type" #type="ngModel" name="seelct" name="type" id="type" required>
+                                                        <option value="integer">integer</option>
+                                                        <option value="null">null</option>
+                                                        <option value="string">string</option>
+                                                    </select>
+                                            <p class="checkbox"><input type="checkbox" /> <span>is this personal data?</span></p>
+                                        </div>
+                                        <div class="sensivity">
+                                            <h5>Sensitivity</h5>
+                                            <input [(ngModel)]="usuario.sensitivity" #sensitivity="ngModel" type="text" name="sensitivity" id="sensitivity" style="width: 100%" required />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                        <button type="submit" class="save-this">Save</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="alert alert-info" role="alert" style="margin-top: 20px;">
+                                    POSSIBLE VALUES
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row spacing">
+                                    <div class="col-6"><strong>VALUE</strong></div>
+                                    <div class="col-6"><strong>DESCRIPTION</strong></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row spacing" *ngFor="let poss of possible">
+                                    <div class="col-6">{{poss.value}}</div>
+                                    <div class="col-6">{{poss.description}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="button" class="add-key" style="width: 30% " data-toggle="modal" data-target="#exampleModal">Add possible value</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">POSSIBLE VALUES</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <app-possible-values></app-possible-values>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<form (ngSubmit)="OnGuardarPossible(formNew)" #formNew="ngForm">
+    <div class="row">
+        <div class="col-6">
+            <input [(ngModel)]="possible.value" #value="ngModel" type="text" name="value" id="value" style="width: 100%;" placeholder="New Value" />
+        </div>
+        <div class="col-6">
+            <input [(ngModel)]="possible.description" type="text" name="description" #description="ngModel" id="description" style="width: 100%;" placeholder="New Description" />
+        </div>
+
+    </div>
+    <button type="submit" class="add-key btn btn-info" style="width: 100%; margin: 15px 0;">SAVE</button>
+</form>
