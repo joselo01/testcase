@@ -10,7 +10,7 @@ import { PossibleValuesComponent } from './components/possible-values/possible-v
 const routes: Routes = [
   { path: 'manage', component: ManagerComponent },
   { path: 'user', component: UserComponent },
-  { path: 'manage', component: ReviewComponent },
+  { path: 'review', component: ReviewComponent },
   { path: 'requets', component: RequestComponent },
   { path: 'possible', component: PossibleValuesComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'manage' }

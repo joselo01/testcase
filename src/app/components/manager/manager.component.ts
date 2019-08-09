@@ -17,12 +17,20 @@ userToEdit: User;
 
   ngOnInit() {
     this.userServices.getUser().subscribe( user => {
+      console.log('Cargando', user);
       this.user = user;
     });
 
     this.userServices.getPossible().subscribe( possible => {
       this.possible = possible;
   });
+
+
+
+
+
+
+
   }
 
   editUser(event, user: User) {

@@ -9,7 +9,7 @@ import { Possible } from '../interfaces/possible.interface';
 })
 
 export class UserServices {
-
+ 
   userCollection: AngularFirestoreCollection<User>;
   user: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
@@ -19,8 +19,8 @@ export class UserServices {
 
   constructor( public afs: AngularFirestore) {
     // this.user = afs.collection('user').valueChanges();
-    this.possible = afs.collection('possible').valueChanges();
-    this.possibleCollection = afs.collection<User>('possible');
+    // this.possible = afs.collection('possible').valueChanges();
+    this.possibleCollection = afs.collection<Possible>('possible');
     this.userCollection = afs.collection<User>('user');
     this.user = this.userCollection.snapshotChanges().pipe(
       map(actions => actions.map (a => {
@@ -32,7 +32,13 @@ export class UserServices {
   }
 
   getUser() {
-    return this.user;
+    return this.userCollection.snapshotChanges().pipe(
+      map(actions => actions.map (a => {
+        const data = a.payload.doc.data() as User;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
   }
 
   addUser(user: User) {
@@ -45,7 +51,13 @@ export class UserServices {
   }
 
   getPossible() {
-    return this.possible;
+    return this.possibleCollection.snapshotChanges().pipe(
+      map(actions => actions.map (a => {
+        const data = a.payload.doc.data() as Possible;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
   }
 
   addPossible(possible: Possible) {
