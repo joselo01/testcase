@@ -17,7 +17,7 @@ userToEdit: User;
 
   ngOnInit() {
     this.userServices.getUser().subscribe( user => {
-      console.log('Cargando', user);
+      // console.log('Cargando', user);
       this.user = user;
     });
 
