@@ -17,7 +17,7 @@ requests$: Observable<Requests[]>;
    }
 
   ngOnInit() {
-    console.log('Request', this.requests$);
+    // console.log('Request', this.requests$);
   }
 
 }
